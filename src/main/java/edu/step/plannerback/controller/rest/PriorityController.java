@@ -2,49 +2,29 @@ package edu.step.plannerback.controller.rest;
 
 
 
+import edu.step.plannerback.model.Priority;
+import edu.step.plannerback.service.priority.impls.PriorityServiceImpl;
+import edu.step.plannerback.service.priority.interfaces.IPriorityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+@RequestMapping("/api/priority")
 @RestController
+@CrossOrigin("*")
 public class PriorityController {
-  private Long id;
-  private  String name;
-  private  String color;
 
-    public PriorityController(Long id, String name, String color) {
-        this.id = id;
-        this.name = name;
-        this.color = color;
+    @Autowired
+    PriorityServiceImpl service;
+    //IPriorityService service;
+
+    @RequestMapping("/list")
+    public List<Priority> getAll(){
+        return service.getAll();
     }
 
-    public PriorityController(String name, String color) {
-        this.name = name;
-        this.color = color;
-    }
 
-    public PriorityController() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }
